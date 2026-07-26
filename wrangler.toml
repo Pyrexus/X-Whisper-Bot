@@ -1,0 +1,24 @@
+name = "whisper-bot"
+main = "src/index.ts"
+compatibility_date = "2025-06-01"
+compatibility_flags = ["nodejs_compat"]
+
+# Run the sweep every minute — closes out expired whispers & disables buttons.
+[triggers]
+crons = ["* * * * *"]
+
+# Create this KV namespace with:
+#   wrangler kv namespace create WHISPER_KV
+# then paste the returned id/preview_id below.
+[[kv_namespaces]]
+binding = "WHISPER_KV"
+id = "REPLACE_WITH_KV_NAMESPACE_ID"
+preview_id = "REPLACE_WITH_KV_PREVIEW_ID"
+
+# Secrets (set with `wrangler secret put <NAME>`, do NOT put real values here):
+#   BOT_TOKEN            - Telegram bot token from @BotFather
+#   BOT_SECRET            - random string, used to validate Telegram webhook requests
+#   OWNER_IDS             - comma separated Telegram numeric user ids, e.g. "111,222"
+#   BACKUP_CHANNEL_ID      - channel id (e.g. -1001234567890) all whispers get mirrored to
+[vars]
+BOT_USERNAME = "YourWhisperBot"
